@@ -6,7 +6,7 @@
 		intro = $('.intro'),
 		listItem = $('ul li'),
 		buttons = $('button'),
-		tl = new TimelineLite();
+		tl = new TimelineLite({paused: true});
 
 	// TimelineLite vs TimelineMax
 	tl
