@@ -7,6 +7,9 @@
 		listItem = $('ul li'),
 		buttons = $('button'),
 		tl = new TimelineLite({paused: true});
+	const dot = $('.dot');
+	const loader = $('#loader');
+	const tlLoader = new TimelineMax({repeat: 2, onComplete: loadContent});
 
 	// TimelineLite vs TimelineMax
 	tl
@@ -15,6 +18,24 @@
 		.from(img, 0.3, {y: -15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15')
 		.from(h2, 0.3, {y: -15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15')
 		.from(listItem, 0.3, {y: -15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15');
+
+	// Loader TimeLiine
+
+	tlLoader
+		.staggerFromTo(dot, 0.3,
+			{y: 0, autoAlpha: 0},
+			{y: 20, autoAlpha: 1, ease: Back.easeInOut},
+			0.05
+		)
+		.fromTo(loader, 0.3,
+			{autoAlpha: 1, scale: 1.3},
+			{autoAlpha: 0, scale: 1, ease: Power0.easeNone},
+			0.9
+		);
+	function loadContent() {
+		console.log('bring on the content');
+	}
+
 
 	$('#btnPlay').on('click',function(){
 		tl.play();
